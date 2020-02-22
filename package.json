@@ -1,0 +1,9 @@
+{
+    "name" : "xxx",
+    "version" : "0.0.0",
+    "scripts": {
+        "test": "mocha --reporter spec  --exit --globals  csvFile,l  jsdk/unittest.js"
+       
+      }
+    
+  }

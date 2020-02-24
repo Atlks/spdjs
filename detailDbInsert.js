@@ -2,13 +2,29 @@ mdx = require('./conn.js');
 connection = mdx.conn;
 //detailDbInsert
 
+
+logmdx = require('./jsdk/log.js');
+logger = logmdx.logger;
+logger.info("this is a info msg");
+//  -["C:\\Program Files\\nodejs\\node.exe","d:\\prj\\spdJs\\detailDbInsert.js","testparam"]
+
+
+
 var options = process.argv;
+param=options[2];
 console.log("------------------------"+ JSON.stringify(options))
+logger.info("------------------------"+ JSON.stringify(options));
+logger.info("------------------true parem-"+param);
+
+unescapeParam=unescape(param)
+logger.info("------------------unescapeParam-"+unescapeParam);
   obj2str=options[0];
-  console.log("--subprocess param:"+obj2str)
-connection.query('INSERT INTO 抓取数据记录(数据) VALUES(?)', [obj2str], (err, results) => {
+  console.log("--subprocess param:"+JSON.stringify(options))
+connection.query('INSERT INTO 抓取数据记录(数据) VALUES(?)', [unescapeParam], (err, results) => {
     if (err) {
         console.log(err);
+        logger.error(err);
     }
-    console.log(results);
+    logger.info(results);
+    process.exit();
 })

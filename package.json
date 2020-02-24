@@ -1,9 +1,17 @@
 {
-    "name" : "xxx",
-    "version" : "0.0.0",
+    "name": "xxx",
+    "version": "0.0.0",
     "scripts": {
         "test": "mocha --reporter spec  --exit --globals  csvFile,l  jsdk/unittest.js"
-       
-      }
-    
-  }
+    },
+    "devDependencies": {
+        "cheerio": "^1.0.0-rc.3",
+        "chromedriver": "^80.0.1",
+        "geckodriver": "^1.19.1",
+        "log4js": "^6.1.2",
+        "mysql": "^2.18.1",
+        "request": "^2.88.2",
+        "selenium-webdriver": "^4.0.0-alpha.5",
+        "util": "^0.12.2"
+    }
+}

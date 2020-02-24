@@ -1,3 +1,6 @@
+
+
+//  <div id="player" class="original mainPlayerDiv" data-video-id="235325351">
 //  node "D:/prj/spdJs/getLink1.js"
 function imp223()
 {
@@ -13,9 +16,9 @@ mdx = require('./conn.js');
 connection = mdx.conn;
 var fs = require("fs");
 
+var  mvarrs=new Array();
 
-
-for (j=104;j<200;j++)
+for (j=1;j<200;j++)
 for (i = 1; i <= 30; i++) {
    // url = 'https://cn.pornhub.com/video?c=80&page=' + i;
    // cateid = 24; 
@@ -63,25 +66,7 @@ function getDetailLinkV2(html, cateid, cate) {
         var obj2str = JSON.stringify(obj);
     //    console.log(obj2str)
 
-        child_process= require('child_process')  
-      //  child_process.fork("./detailDbInsert.js", [obj2str] ,{silent:true});
-        
-
-      child_process.exec('node ./detailDbInsert.js '+escape(obj2str), function(error, stdout, stderr){
-        if(error) {
-            console.error('error: ' + error);
-            return;
-        }
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + typeof stderr);
-    });
-      //if many dril ujrl ,,cant multi therad
-        // connection.query('INSERT INTO 抓取数据记录(数据) VALUES(?)', [obj2str], (err, results) => {
-        //     if (err) {
-        //         console.log(err);
-        //     }
-        //     console.log(results);
-        // })
+    mvarrs.push(obj);
 
     }
 
@@ -89,25 +74,3 @@ function getDetailLinkV2(html, cateid, cate) {
 
 }
 
-
-
-function getDetailLink(html) {
-
-    var fs = require("fs");
-
-
-
-    var html = fs.readFileSync('input.txt.html', "utf8");
-    console.log(html);
-    const cheerio = require('cheerio')
-    const $ = cheerio.load(html)
-    var a_arr = $('li a[class=""]').toArray();
-    console.log(a_arr)
-
-    for (item of a_arr) {
-        console.log(item.attribs.href)
-        console.log(item.attribs.title)
-
-    }
-
-}

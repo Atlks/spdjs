@@ -8,6 +8,35 @@
     {
         "type": "node",
         "request": "launch",
+        "name": "Launch reqsysn.js",
+        "program": "${workspaceFolder}/reqsysn.js"
+    },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch catchDetailpage",
+            "program": "${workspaceFolder}/catchDetailpage.js"
+        },
+
+        
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch detailDbInsert",
+            "program": "${workspaceFolder}/detailDbInsert.js",
+            "args": [
+                "param111"
+              ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch mainproc",
+            "program": "${workspaceFolder}/mainproc.js"
+        },
+    {
+        "type": "node",
+        "request": "launch",
         "name": "Launch testdb",
         "program": "${workspaceFolder}/testdb.js"
     },

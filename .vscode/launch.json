@@ -8,6 +8,12 @@
     {
         "type": "node",
         "request": "launch",
+        "name": "test",
+        "program": "${workspaceFolder}/test.js"
+    },
+    {
+        "type": "node",
+        "request": "launch",
         "name": "Launch reqsysn.js",
         "program": "${workspaceFolder}/reqsysn.js"
     },

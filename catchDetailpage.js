@@ -17,7 +17,7 @@ connection = mdx.conn;
 var fs = require("fs");
 
 require('chromedriver');
-//require('firefoxdriver');
+//require('firefoxdriver');  
 require('geckodriver');  //for ff
 
 var { Builder, By, Key, until } = require('selenium-webdriver');

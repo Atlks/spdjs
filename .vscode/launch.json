@@ -8,6 +8,18 @@
     {
         "type": "node",
         "request": "launch",
+        "name": "Launch insertDetailinfo.js",
+        "program": "${workspaceFolder}/insertDetailinfo.js"
+    },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch httpserver_perlist",
+        "program": "${workspaceFolder}/httpserver_perlist.js"
+    },
+    {
+        "type": "node",
+        "request": "launch",
         "name": "test",
         "program": "${workspaceFolder}/test.js"
     },

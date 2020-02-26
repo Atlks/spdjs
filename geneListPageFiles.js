@@ -3,10 +3,15 @@ logger = logmdx.logger;
 console.log("--")
 
 require('chromedriver'); //导入chrome浏览器 driver
+//require('firefoxdriver');  
+require('geckodriver');  //for ff
+
+var { Builder, By, Key, until } = require('selenium-webdriver');
+var webdriver = require('selenium-webdriver'); //导入selenium 库
 
 var webdriver = require('selenium-webdriver'); //导入selenium 库
 
-var driver = new webdriver.Builder().forBrowser('chrome').build(); //创建一个chrome 浏览器实例
+var driver = new webdriver.Builder().forBrowser('firefox').build(); //创建一个chrome 浏览器实例
 
 (async () => {
 
@@ -22,15 +27,15 @@ var driver = new webdriver.Builder().forBrowser('chrome').build(); //创建一�
   console.log("fi");
 
   //102,103,10,119,121,129,12,145,
-  catids = '14,159,15,161,16,175,17,189,18,190,1,20,24,25,26,28,29,2,32,3,42,55,65,7,80,80,88,8,96,9'
+  catids = '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,76,77,78,79,80,81,82,83,84,85,86,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,111,115,121,131,138,139,141,181'
   arr = catids.split(',')
 
   // for(j=1;j<200;j++)
   for (catid of arr) {
-    for (i = 1; i <= 30; i++) {
+    for (i = 1; i <= 60; i++) {
 
 
-      page=i
+      page = i
       fname = "D:\\prj\\data\\hornhub" + "_cate" + catid + "_page" + page + '.html';
       var fs = require("fs");
       if (fs.existsSync(fname)) {
@@ -39,8 +44,8 @@ var driver = new webdriver.Builder().forBrowser('chrome').build(); //创建一�
       }
       url = 'https://cn.pornhub.com/video?c=' + catid + '&page=' + i;
       logger.info("file not exist,ready to catch ,url: " + url);
-  
-      htmlbody = await getDetailV2(url, catid, i);
+
+      htmlbody = await getDetailV3(url, catid, i);
       writefilex(catid, page, htmlbody)
     }
   }
@@ -48,6 +53,26 @@ var driver = new webdriver.Builder().forBrowser('chrome').build(); //创建一�
 
 
 })();
+
+
+//web driver
+async function getDetailV3(url, cateid, page) {
+  // const request = await require('request');
+  //console.log   "user-agent","Mozilla/5.0"
+
+
+
+  await driver.get(url)
+  title = await driver.getTitle()
+  console.log(title);
+
+  getPageSource1 = driver.getPageSource();
+
+return getPageSource1
+
+
+
+}
 
 //web driver
 function getDetailV2(url, cateid, page) {

@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require('path');
 
 //设置根目录
-var root = 'D:\\prj\\data';
+var root = 'D:\\prj\\dataCateTest';
 
 var arr = [];
 let set = new Set(); //或者 new Set(null);
@@ -53,4 +53,4 @@ console.log("--F")
 console.log(  Array.from(set) )
 console.log( Array.from(set).join(','))
 
-console.log( Array.from(arr).join(','))
+console.log( Array.from(arr).sort(function(a, b){return a - b}).join(','))

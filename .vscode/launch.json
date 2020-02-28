@@ -8,6 +8,12 @@
     {
         "type": "node",
         "request": "launch",
+        "name": "Launch imptsql.js",
+        "program": "${workspaceFolder}/imptsql.js"
+    },
+    {
+        "type": "node",
+        "request": "launch",
         "name": "Launch insertDetailinfo.js",
         "program": "${workspaceFolder}/insertDetailinfo.js"
     },

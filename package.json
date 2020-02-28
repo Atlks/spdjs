@@ -5,9 +5,11 @@
         "test": "mocha --reporter spec  --exit --globals  csvFile,l  jsdk/unittest.js"
     },
     "devDependencies": {
+        "async-stream-reader": "^1.2.0",
         "cheerio": "^1.0.0-rc.3",
         "chromedriver": "^80.0.1",
         "geckodriver": "^1.19.1",
+        "line-reader": "^0.4.0",
         "log4js": "^6.1.2",
         "mysql": "^2.18.1",
         "request": "^2.88.2",

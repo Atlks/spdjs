@@ -99,8 +99,10 @@ function get7data(req,res) {
         try {
 
             //  json_unquote (json_extract ( 其他扩展字段, '$.downed' ))
-            sql = "select 	json_unquote (urlid) as urlid from  抓取数据记录  where urlid is not null and json_unquote(json_extract( 其他扩展字段, '$.downed' ))='n'  limit 9"
+            sql = "select 	json_unquote (urlid) as urlid from  抓取数据记录  where (urlid is not null and json_unquote(json_extract( 其他扩展字段, '$.downed' ))='n' ) OR ( urlid is not null  and 其他扩展字段 is null ) or    (  urlid is not null  and json_extract( 其他扩展字段, '$.downed' ) is null )  order by id desc limit 9"
+            logger.info(sql);
             let rows = await query(connection, sql)
+            logger.info(rows);
             lists = JSON.stringify(rows);
             for (row of rows) {
                 sql = " update 抓取数据记录 set 其他扩展字段 = json_set(其他扩展字段,'$.downed','y','$.downtime',NOW()) where json_unquote (urlid)='@urlid@' ";

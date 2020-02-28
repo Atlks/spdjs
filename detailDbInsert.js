@@ -27,7 +27,8 @@ sql = sql.replace('@urlid@', '"' + json.LiAattribs.href + '"')
 logger.info(sql);
 connection.query(sql, [unescapeParam], (err, results) => {
   if (err) {
-    console.log(err);
+   // console.log(err);
+   logger.error("query err:"+ sql);
     logger.error(err);
   }
   logger.info(results);

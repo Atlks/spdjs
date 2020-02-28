@@ -5,6 +5,24 @@
     //  getLink1.js  porthub  listGene.js v vartest  webdriver  test catchDetailpage
     "version": "0.2.0",
     "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch await2.js",
+            "program": "${workspaceFolder}/await2.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch thumbFix.js",
+            "program": "${workspaceFolder}/thumbFix.js"
+        },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch dataimgrt.js",
+        "program": "${workspaceFolder}/dataimgrt.js"
+    },
     {
         "type": "node",
         "request": "launch",

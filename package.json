@@ -5,6 +5,7 @@
         "test": "mocha --reporter spec  --exit --globals  csvFile,l  jsdk/unittest.js"
     },
     "devDependencies": {
+        "async": "^3.2.0",
         "async-stream-reader": "^1.2.0",
         "cheerio": "^1.0.0-rc.3",
         "chromedriver": "^80.0.1",

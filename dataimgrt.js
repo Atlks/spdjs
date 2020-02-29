@@ -15,12 +15,13 @@ function getkey() { }
 
     while (true) {
 
-        sql = "select * from      抓取数据记录 where   issynced( 其他扩展字段, '$.synced' )='n' order by id desc  limit   9"
+        sql = "select * from      抓取数据记录 where   issynced( 其他扩展字段, '$.synced' )='n' and urlid is not null order by id desc  limit   9"
         logger.info(sql);
         let rows = await query(connection, sql)
         logger.info(rows);
         if (!rows) break;
-
+            if(rows.length==0)
+            break;
 
         lists = JSON.stringify(rows);
         for (row of rows) {

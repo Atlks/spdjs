@@ -1,3 +1,9 @@
+
+// node   geneListPageFiles.js
+// node  D:\prj\spdJs\geneListPageFiles.js 3 1
+var threadCount =parseInt( process.argv[2] )
+var threaid = parseInt (process.argv[3] )
+//paramStartIdex=parseInt(paramStartIdex)
 logmdx = require('./jsdk/log.js');
 logger = logmdx.logger;
 console.log("--")
@@ -7,7 +13,7 @@ require('chromedriver'); //导入chrome浏览器 driver
 require('geckodriver');  //for ff
 
 var { Builder, By, Key, until } = require('selenium-webdriver');
-var webdriver = require('selenium-webdriver'); //导入selenium 库
+ 
 
 var webdriver = require('selenium-webdriver'); //导入selenium 库
 
@@ -31,22 +37,39 @@ var driver = new webdriver.Builder().forBrowser('firefox').build(); //创建一�
   arr = catids.split(',')
 
   // for(j=1;j<200;j++)
+  nm=0;
+  taskNum=0;
   for (catid of arr) {
-    for (i = 1; i <= 60; i++) {
+    nm++;
+    // if(nm<paramStartIdex)
+    //   continue  
+    for (i = 60; i <= 500; i++) {
 
+      //task palam lib
+      taskNum++;
+     modRzt=  taskNum %threadCount;
+     if(modRzt!=threaid)
+     continue;
+      //task palam lib  end 
+      try {
+        page = i
+        fname = "D:\\prj\\data\\hornhub" + "_cate" + catid + "_page" + page + '.html';
+        var fs = require("fs");
+        if (fs.existsSync(fname)) {
+          logger.info("file exist " + fname);
+          continue;
+        }
+        url = 'https://cn.pornhub.com/video?c=' + catid + '&page=' + i;
+        logger.info("file not exist,ready to catch ,url: " + url);
 
-      page = i
-      fname = "D:\\prj\\data\\hornhub" + "_cate" + catid + "_page" + page + '.html';
-      var fs = require("fs");
-      if (fs.existsSync(fname)) {
-        logger.info("file exist " + fname);
-        continue;
+        htmlbody = await getDetailV3(url, catid, i);
+        if (htmlbody.indexOf('没有发现视频') > 1)
+          break;
+        writefilex(catid, page, htmlbody)
+      } catch (e) {
+        logger.error(e);
       }
-      url = 'https://cn.pornhub.com/video?c=' + catid + '&page=' + i;
-      logger.info("file not exist,ready to catch ,url: " + url);
 
-      htmlbody = await getDetailV3(url, catid, i);
-      writefilex(catid, page, htmlbody)
     }
   }
 
@@ -68,7 +91,7 @@ async function getDetailV3(url, cateid, page) {
 
   getPageSource1 = driver.getPageSource();
 
-return getPageSource1
+  return getPageSource1
 
 
 

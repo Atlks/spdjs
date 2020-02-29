@@ -43,12 +43,23 @@ http.createServer(function (req, res) {
     var q = url.parse(req.url, true).query;
     //   res.write(req.url);
     if (req.url == '/get7data') {
-        get7data(req,res);
+        try {
+            get7data(req, res);
+        } catch (e) {
+            logger.error(req.url)
+        }
+
     }
     else if (q.act == 'tonzhiDownOk') {
-        logger.info(req.url)
-        console.info(req.url)
-        tonzhiDownOk(req,res);
+
+
+        try {
+            logger.info(req.url)
+            console.info(req.url)
+            tonzhiDownOk(req, res);
+        } catch (e) {
+            logger.error(req.url)
+        }
     } else {
         res.write("ok main"); //write a response to the client
         res.end();
@@ -57,7 +68,7 @@ http.createServer(function (req, res) {
 
 }).listen(888); //the server object listens on port 8080
 
-function tonzhiDownOk(req,res) {
+function tonzhiDownOk(req, res) {
 
     (async () => {
 
@@ -92,7 +103,7 @@ function tonzhiDownOk(req,res) {
 
 }
 
-function get7data(req,res) {
+function get7data(req, res) {
 
     (async () => {
 

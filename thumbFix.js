@@ -6,6 +6,10 @@
 // insertDetailinfo.js
 
 // node   D:\prj\spdJs\thumbFix.js
+
+
+
+
 var $;
 function imp223() {
     var log4js = require('log4js');
@@ -24,6 +28,15 @@ var fs = require("fs");
 
 
 const cheerio = require('cheerio');
+
+
+// sql = "  update movie_t set picture='@tmb@',app_picture='@tmb@',source_id='@vid@' where cache_path = '@url@'  ";
+ 
+// sql = sql.replace(/@tmb@/g, "obj.thumb")
+ 
+// //console.log(sql);
+// logger.info(sql);
+// throw 'd'
 
 
 (async () => {
@@ -155,15 +168,35 @@ async function li_each_event(index, e) {
     // var cmd = 'node ./detailDbInsert.js ' + escape(obj2str)
     // console.log(cmd)
 
-    //sql = "INSERT INTO 抓取数据记录(数据,urlid) VALUES('@d@','@urlid@')";
-    query = require('./jsdk/mysql.js')
-    sql = "  update 抓取数据记录 set 其他扩展字段 = json_set(其他扩展字段,'$.thumb','@tmb@') where urlid = '@url@'  ";
-    sql = sql.replace('@url@', '"' + obj.LiAattribs.href + '"')
-    sql = sql.replace('@tmb@', obj.thumb)
+    try{
+  //sql = "INSERT INTO 抓取数据记录(数据,urlid) VALUES('@d@','@urlid@')";
+  query = require('./jsdk/mysql.js')
+  sql = "  update 抓取数据记录 set 其他扩展字段 = json_set(其他扩展字段,'$.thumb','@tmb@') where urlid = '@url@'  ";
+  sql = sql.replace('@url@', '"' + obj.LiAattribs.href + '"')
+  sql = sql.replace('@tmb@', obj.thumb)
+  logger.info(sql);
+  var rzt9 = await query(connection, sql)
+  logger.info(rzt9);
+  console.log(sql);
+    }catch(e)
+    {
+        logger.error(e);
+    }
+  
+
+
+    //update movie
+    sql = "  update movie_t set picture='@tmb@',app_picture='@tmb@',source_id='@vid@' where cache_path = '@url@'  ";
+    sql = sql.replace('@url@', '' + obj.LiAattribs.href + '')
+    sql = sql.replace(/@tmb@/g, obj.thumb)
+    sql = sql.replace('@vid@', obj.data_video_id)
+    //console.log(sql);
     logger.info(sql);
-    let rzt9 = await query(connection, sql)
+      rzt9 = await query(connection, sql)
     logger.info(rzt9);
-    console.log(sql);
+  
+
+  //  process.exit();
 
 }
 

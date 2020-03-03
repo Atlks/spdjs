@@ -3,6 +3,8 @@
 
 //  node  insertDetailinfo.js
 // insertDetailinfo.js
+
+maindir = 'D:\\prj\\dataCateTest';
 function imp223() {
     var log4js = require('log4js');
     var mysql = require('mysql');
@@ -32,7 +34,7 @@ var fs = require("fs");
             cateid = j; cate = '';
             //cate='公众野战';
             page = i;
-            fname = "D:\\prj\\data\\hornhub_cate" + cateid + "_page" + page + '.html';
+            fname = maindir+"\\hornhub_cate" + cateid + "_page" + page + '.html';
             console.log(fname);
             logger.info(fname)
 

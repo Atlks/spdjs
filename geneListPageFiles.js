@@ -51,6 +51,8 @@ var driver = new webdriver.Builder().forBrowser('firefox').build(); //创建一�
      if(modRzt!=threaid)
      continue;
       //task palam lib  end 
+
+      
       try {
         page = i
         fname = "D:\\prj\\data\\hornhub" + "_cate" + catid + "_page" + page + '.html';

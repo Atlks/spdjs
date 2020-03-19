@@ -1,9 +1,16 @@
+mod = require('./flwUrl2rss.js');
+mod.feilonveo2rss().then(rzt=>{
+    console.log( rzt  );//throw 5;
+})
+
+return;
+//throw 5;
+
+
 (async () => {
 
         
-    mod = require('./flwUrl2rss.js');
-    console.log( await mod.feilonveo2rss());
-    throw 5;
+
   
 })();
 

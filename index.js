@@ -10,16 +10,15 @@ exports.helloWorld = (req, res) => {
 
   var url = require('url');
   var q = url.parse(req.url, true).query;
-  if (q.rss == 'flw') {
+  if (q.fun == 'flw') {  //feilongwang
     mod = require('./flwUrl2rss.js');
 
-    mod.feilonveo2rss().then(rzt => {
+    mod.feilonveo2rss('https://www.flw.ph/forum-40-1.html', 'thread').then(rzt => {
       console.log(rzt);//throw 5;
       res.status(200).send(rzt);
     });
   }
-  else
-  {
+  else {
     res.status(200).send('ok');
   }
 

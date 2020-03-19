@@ -1,14 +1,13 @@
- 
-
-async function feilonveo2rss() {
-
+keyword='';
+async function feilonveo2rss(url3,keyword7) {
+    keyword=keyword7;
    // throw 66;
-    url = 'https://www.flw.ph/forum-40-1.html'
+
     const util = require('util')
     const request = require("request");
 
     const requestPromise = util.promisify(request);
-    const response = await requestPromise(url);
+    const response = await requestPromise(url3);
     // console.log('response', response.body);
     var fs = require("fs");
     try{
@@ -24,23 +23,7 @@ async function feilonveo2rss() {
 
     //rss
 
-    // Require module
-    var Feed = require('feed').Feed;
-
-    // Initializing feed object
-    var feed = new Feed({
-        title: 'flwFlbNews Title',
-        description: 'This is my personnal feed!',
-        link: 'http://example.com/',
-        image: 'http://example.com/logo.png',
-        copyright: 'Copyright © 2013 John Doe. All rights reserved',
-
-        author: {
-            name: 'John Doe',
-            email: 'john.doe@example.com',
-            link: 'https://example.com/john-doe'
-        }
-    });
+   
 
 
     html = response.body
@@ -49,7 +32,8 @@ async function feilonveo2rss() {
     $ = 8
     //  html='<a href="thread xxxx">aaatttt</a>';
     $ = cheerio.load(html)
-
+  title=  $('title').text()
+  desc=$('meta[name="description"]').attr('content');
     
     var elms = [];
 
@@ -58,6 +42,25 @@ async function feilonveo2rss() {
 
     });
 
+
+
+     // Require module
+     var Feed = require('feed').Feed;
+
+     // Initializing feed object
+     var feed = new Feed({
+         title: title,
+         description:desc,
+         link: 'http://example.com/',
+         image: 'http://example.com/logo.png',
+         copyright: 'Copyright © 2013 John Doe. All rights reserved',
+ 
+         author: {
+             name: 'John Doe',
+             email: 'john.doe@example.com',
+             link: 'https://example.com/john-doe'
+         }
+     });
     
     for (e of elms) {
 
@@ -86,7 +89,8 @@ async function feilonveo2rss() {
 async function li_each_event(index, element,feed) {
     title = $(element).text().trim();
     href = $(element).attr('href');
-    if (href.indexOf('thread') >= 0) {
+    
+    if (href.indexOf(keyword) >= 0) {
         if ($(element).text().trim().length > 0) {
             console.log($(element).text())
             if (href.indexOf("http") != 0)

@@ -1,7 +1,10 @@
+(async () => {
+
 mod = require('./flwUrl2rss.js');
-mod.feilonveo2rss().then(rzt=>{
-    console.log( rzt  );//throw 5;
-})
+rzt =await mod.feilonveo2rss('https://www.flw.ph/forum-40-1.html','thread');
+console.log( rzt  );
+ 
+})();
 
 return;
 // //throw 5;

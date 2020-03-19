@@ -50,33 +50,29 @@ async function feilonveo2rss() {
     //  html='<a href="thread xxxx">aaatttt</a>';
     $ = cheerio.load(html)
 
-    $('a').each(function (index, element) {
-        // elms.push(element);
-        try {
-            title = $(element).text().trim();
-            href = $(element).attr('href');
-            if (href.indexOf('thread') >= 0) {
-                if ($(element).text().trim().length > 0) {
-                    console.log($(element).text())
-                    if (href.indexOf("http") != 0)
-                        herf = ('https://www.flw.ph/' + href)
+    
+    var elms = [];
 
-                    feed.addItem({
-                        title: title,
-                        link: herf,
-                        description: title,
-                        date: new Date()
-                    });
-                }
-            }
-        } catch (e) {
-            logger.error(e)
-        }
-
-
-        //  element.attr('text')
+    await  $('a').each(await async function (index, element) {
+        elms.push(element);
 
     });
+
+    
+    for (e of elms) {
+
+        try {
+
+            await li_each_event(0, e,feed)
+        } catch (e) {
+            console.error('error: ' + JSON.stringify(e));
+            console.error(e)
+        }
+
+    }
+
+
+ 
 
     var output = feed.rss2();
     console.log(output)
@@ -85,6 +81,25 @@ async function feilonveo2rss() {
 
 
     return output;
+}
+
+async function li_each_event(index, element,feed) {
+    title = $(element).text().trim();
+    href = $(element).attr('href');
+    if (href.indexOf('thread') >= 0) {
+        if ($(element).text().trim().length > 0) {
+            console.log($(element).text())
+            if (href.indexOf("http") != 0)
+                herf = ('https://www.flw.ph/' + href)
+
+            feed.addItem({
+                title: title,
+                link: herf,
+                description: title,
+                date: new Date()
+            });
+        }
+    }
 }
 function getLogger() {
 

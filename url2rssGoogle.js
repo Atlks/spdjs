@@ -4,26 +4,26 @@ mod.feilonveo2rss().then(rzt=>{
 })
 
 return;
-//throw 5;
+// //throw 5;
 
 
-(async () => {
+// (async () => {
 
         
 
   
-})();
+// })();
 
 
 var http = require('http');
 
 // create a server object:
 http.createServer(function (req, res) {
-    logger = getLogger();
+   // logger = getLogger();
     (async () => {
 
-        
-        message = await feilonveo2rss();
+        mod = require('./flwUrl2rss.js');
+        message = await mod.feilonveo2rss();
      //   res.status(200).send(message);
          res.write(message); //write a response to the client
         res.end();

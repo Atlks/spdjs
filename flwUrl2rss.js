@@ -100,7 +100,7 @@ async function li_each_event(index, element,feed) {
             feed.addItem({
                 title: title,
                 link: herf,
-                guid: Math.random() ,
+                guid: 'http://attilax.com/aa?rdm='+Math.random() ,
                 description: title,
                 date: new Date()
             });

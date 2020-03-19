@@ -1,4 +1,6 @@
 {
+
+    
     "name": "xxx",
     "version": "0.0.0",
     "scripts": {
@@ -9,6 +11,7 @@
         "async-stream-reader": "^1.2.0",
         "cheerio": "^1.0.0-rc.3",
         "chromedriver": "^80.0.1",
+        "feed": "^4.1.0",
         "geckodriver": "^1.19.1",
         "line-reader": "^0.4.0",
         "log4js": "^6.1.2",

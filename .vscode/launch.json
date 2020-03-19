@@ -8,6 +8,12 @@
     {
         "type": "node",
         "request": "launch",
+        "name": "Launch url2rssGoogle.js",
+        "program": "${workspaceFolder}/url2rssGoogle.js"
+    },
+    {
+        "type": "node",
+        "request": "launch",
         "name": "Launch url2rss",
         "program": "${workspaceFolder}/url2rss.js"
     },

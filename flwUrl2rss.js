@@ -10,7 +10,10 @@ async function feilonveo2rss() {
     const response = await requestPromise(url);
     // console.log('response', response.body);
     var fs = require("fs");
-    fs.writeFileSync("d:\\flw.htm", response.body);
+    try{
+        fs.writeFileSync("d:\\flw.htm", response.body);
+    }
+  catch(e){}
 
 
     //-----------------rss

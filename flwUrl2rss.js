@@ -78,6 +78,7 @@ async function feilonveo2rss(url3,keyword7) {
  
 
     var output = feed.rss2();
+    //output = feed.atom1();
     console.log(output)
     //  var a_arr = $('a').toArray();
 
@@ -99,6 +100,7 @@ async function li_each_event(index, element,feed) {
             feed.addItem({
                 title: title,
                 link: herf,
+                guid: Math.random() ,
                 description: title,
                 date: new Date()
             });

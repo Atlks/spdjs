@@ -423,9 +423,9 @@ async function getJsonRzt(svr) {
         url = "http://www.skrsport.live/?service=" + svr + "&username=sport_api&secret=0gclkqzK";
 
 
-        const util = require('util')
+       
         const request = require("request");
-
+        const util = require('util')
         const requestPromise = util.promisify(request);
         const response = await requestPromise(url);
         console.log('response', response.body);
